@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(EmployeeController::class)->group(function() {
+    Route::get('employees', 'index');
+    Route::get('employees/pdf', 'exportToPDF')->name('employee.export.pdf');
 });
